@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://b8wnena2our1h"]
+
+[ext_resource type="PackedScene" uid="uid://bmvm2avo7go82" path="res://Models/animal-koala.glb" id="1_vhpom"]
+[ext_resource type="Script" uid="uid://kblxop56ul6t" path="res://_Scripts/koala.gd" id="2_4tlbs"]
+[ext_resource type="AudioStream" uid="uid://idrxokm101pm" path="res://Sounds/level1.wav" id="3_007gl"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_g4v7s"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_yf5fn"]
+
+[node name="Main3d" type="Node3D" unique_id=1802200565]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1010219123]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=587644675]
+transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
+mesh = SubResource("PlaneMesh_g4v7s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1191929646]
+shape = SubResource("WorldBoundaryShape3D_yf5fn")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=606442364]
+transform = Transform3D(0.34202015, 0.7198463, -0.6040228, 0, 0.64278764, 0.76604444, 0.9396926, -0.26200265, 0.21984632, 0, 0, 0)
+
+[node name="animal-koala2" parent="." unique_id=559397854 instance=ExtResource("1_vhpom")]
+script = ExtResource("2_4tlbs")
+
+[node name="Camera3D" type="Camera3D" parent="animal-koala2" unique_id=152508044]
+transform = Transform3D(-1, 2.5997338e-08, -8.3467846e-08, -2.3105615e-08, 0.8422153, 0.5391414, 8.431413e-08, 0.5391414, -0.8422153, -0.41629744, 2.189623, -1.8952533)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1869068980]
+stream = ExtResource("3_007gl")
+autoplay = true

@@ -10,6 +10,16 @@ func _ready() -> void:
 func restart_level() -> void:
 	get_tree().reload_current_scene()
 
+
+#func launch_projectile() -> void:
+	#var new_proj: Node = projectile.instantiate()
+	#new_proj.position = position
+	#if $AnimatedSprite2D.flip_h:
+		#new_proj.position.x = -new_proj.position.x
+		#new_proj.speed = -new_proj.speed
+	#else:
+		#pass
+	
 func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("move_right"):
 		velocity.x = move_toward(velocity.x, speed, delta*acceleration)

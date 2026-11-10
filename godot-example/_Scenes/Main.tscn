@@ -1,10 +1,9 @@
 [gd_scene format=4 uid="uid://h706ravnv6ml"]
 
-[ext_resource type="Texture2D" uid="uid://ub68ubb8n3rn" path="res://icon.svg" id="1_8u3td"]
-[ext_resource type="Script" uid="uid://xgal81en2bby" path="res://_Scripts/ExampleMovement.gd" id="2_asnbu"]
-[ext_resource type="PackedScene" uid="uid://7hywlyusktnf" path="res://_Scenes/Player.tscn" id="3_7k0l4"]
+[ext_resource type="PackedScene" uid="uid://7hywlyusktnf" path="res://_Scenes/Player.tscn" id="1_asnbu"]
+[ext_resource type="PackedScene" uid="uid://d2d7h0o44leo7" path="res://_Scenes/Enemy.tscn" id="2_7k0l4"]
+[ext_resource type="Script" uid="uid://cp70wfor0apu7" path="res://_Scripts/timer.gd" id="3_7k0l4"]
 [ext_resource type="Texture2D" uid="uid://c562yrkiuucv8" path="res://Spritesheets/spritesheet-tiles-default.png" id="4_sujml"]
-[ext_resource type="PackedScene" uid="uid://d2d7h0o44leo7" path="res://_Scenes/Enemy.tscn" id="5_0k82g"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0k82g"]
 texture = ExtResource("4_sujml")
@@ -4719,7 +4718,7 @@ texture_region_size = Vector2i(64, 64)
 31:72/0 = 0
 32:72/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_g4v7s"]
+[sub_resource type="TileSet" id="TileSet_sujml"]
 tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_0k82g")
@@ -5203,7 +5202,6 @@ texture_region_size = Vector2i(64, 64)
 70:6/0 = 0
 71:6/0 = 0
 0:7/0 = 0
-0:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-20.60479, -1.9117851, 20.392368, -1.9117851, 31.986847, 31.98685, -31.986853, 31.610538)
 1:7/0 = 0
 2:7/0 = 0
 3:7/0 = 0
@@ -9437,32 +9435,40 @@ texture_region_size = Vector2i(64, 64)
 31:72/0 = 0
 32:72/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_yf5fn"]
+[sub_resource type="TileSet" id="TileSet_57qmd"]
 tile_size = Vector2i(64, 64)
-physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_sujml")
 
-[node name="Main" type="Node2D" unique_id=1829155206]
+[node name="Main" type="Node2D" unique_id=221311742]
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=935115727]
-position = Vector2(-405, -159)
-texture = ExtResource("1_8u3td")
-script = ExtResource("2_asnbu")
-speed = 30
+[node name="Player" parent="." unique_id=573352326 instance=ExtResource("1_asnbu")]
+position = Vector2(-206, 63)
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=660182239]
+[node name="Enemy" parent="." unique_id=1882577087 instance=ExtResource("2_7k0l4")]
+position = Vector2(511, 74)
 
-[node name="Player" parent="." unique_id=573352326 instance=ExtResource("3_7k0l4")]
-position = Vector2(0, -259)
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=253850590]
 
-[node name="Ground_TileMapLayer" type="TileMapLayer" parent="." unique_id=310457834]
-tile_map_data = PackedByteArray("AAD6/wMAAAACAAoAAAD7/wMAAAACAAoAAAD8/wMAAAACAAoAAAD9/wMAAAACAAoAAAD+/wMAAAACAAoAAAD//wMAAAACAAoAAAAAAAMAAAACAAoAAAABAAMAAAACAAoAAAACAAMAAAACAAoAAAAFAAMAAAACAAoAAAADAAMAAAACAAoAAAAEAAMAAAACAAoAAAAIAAMAAAACAAoAAAD5/wMAAAACAAoAAAD4/wMAAAACAAoAAAD3/wMAAAACAAoAAAA=")
-tile_set = SubResource("TileSet_g4v7s")
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer" unique_id=529946514]
+offset_left = 1003.0
+offset_top = 494.0
+offset_right = 1573.0
+offset_bottom = 691.0
+theme_override_font_sizes/normal_font_size = 81
+text = "99
+"
+fit_content = true
+script = ExtResource("3_7k0l4")
+metadata/_edit_use_anchors_ = true
 
-[node name="Hazards_TileMapLayer" type="TileMapLayer" parent="." unique_id=1444064048 groups=["Hazard"]]
-tile_map_data = PackedByteArray("AAADAAIAAAAAAAcAAAA=")
-tile_set = SubResource("TileSet_yf5fn")
+[node name="Ground_TileMapLayer" type="TileMapLayer" parent="." unique_id=1062800557]
+position = Vector2(-579, -259)
+tile_map_data = PackedByteArray("AAAAAAgAAAACAAoAAAABAAgAAAACAAoAAAACAAgAAAACAAoAAAADAAgAAAACAAoAAAAEAAgAAAACAAoAAAAFAAgAAAACAAoAAAAGAAgAAAACAAoAAAAHAAgAAAACAAoAAAAIAAgAAAACAAoAAAAJAAgAAAACAAoAAAAKAAgAAAACAAoAAAANAAgAAAACAAoAAAAOAAgAAAACAAoAAAAPAAgAAAACAAoAAAAQAAgAAAACAAoAAAARAAgAAAACAAoAAAA=")
+tile_set = SubResource("TileSet_sujml")
 
-[node name="Enemy" parent="." unique_id=1585695665 instance=ExtResource("5_0k82g")]
-position = Vector2(515, 96)
-scale = Vector2(0.35, 0.35)
+[node name="Hazard_TileMapLayer" type="TileMapLayer" parent="." unique_id=531292660 groups=["Hazard"]]
+position = Vector2(-579, -259)
+tile_map_data = PackedByteArray("AAAIAAcAAAAAAAcAAAA=")
+tile_set = SubResource("TileSet_57qmd")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1302757052]
